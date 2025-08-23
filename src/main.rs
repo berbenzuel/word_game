@@ -12,12 +12,6 @@ mod game_card;
 
 const WIN_DEFAULT_SIZE:Size<f32> = Size::new(600.0, 600.0);
 
-const APPLICATION_TITLE_LOWERCASE: &str = "word game";
-const APPLICATION_TITLE_UPPERCASE: &str = "Word game";
-
-
-
-
 
 fn main() -> iced::Result{
     let app = application(Game::title, Game::update, Game::view)

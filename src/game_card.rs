@@ -1,11 +1,13 @@
 use std::error::Error;
+use std::fmt::Display;
 use iced::Task;
 use serde::de::Unexpected::Str;
 use serde::Deserialize;
+use log::error;
 
 //"suggestion": "a, adv, conj, interj, n, p, prep, pron, v"
 #[doc = "The part of speech of a word."]
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub enum PartOfSpeech {
     Noun,
     Verb,
@@ -16,9 +18,16 @@ pub enum PartOfSpeech {
     Conjunction,
     Interjection,
     Particle,
+    #[default]
     Undefined
 }
-#[derive(Debug, Clone)]
+impl Display for PartOfSpeech {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        std::fmt::Debug::fmt(&self, f)
+    }
+}
+
+#[derive(Debug, Clone, Default)]
 pub struct GameCard {
     pub word: String,
     pub part_of_speech: PartOfSpeech,
@@ -34,8 +43,20 @@ struct RandomWord {
 }
 
 impl GameCard {
-    pub fn fetch_random() -> Result<GameCard, impl std::error::Error> {
-        let response = reqwest::blocking::get("https://api.msmc.cc/api/dictionary/random").unwrap();
+    pub fn new(word: String, definition: String, part_of_speech: PartOfSpeech) -> GameCard {
+        GameCard {
+            word: word.clone(),
+            part_of_speech,
+            definition,
+            shuffled: Self::shuffle_word(&word),
+        }
+    }
+    pub fn fetch_random() -> Result<GameCard, Box<dyn std::error::Error>> {
+        if cfg!(debug_assertions) {
+            return Ok(GameCard::new("TEST".to_string(), "this is simple test word".to_string(), PartOfSpeech::Noun));
+        }
+
+        let response = reqwest::blocking::get("https://api.msmc.cc/api/dictionary/random")?;
         let deserialized: RandomWord = response.json()?;
         Ok(GameCard::from(deserialized))
     }
@@ -48,7 +69,8 @@ impl GameCard {
         chars.iter().collect::<String>()
     }
 }
-//"suggestion": "a, adv, conj, interj, n, p, prep, pron, v"
+
+
 impl From<RandomWord> for GameCard {
     fn from(random_word: RandomWord) -> Self {
         GameCard {
@@ -72,5 +94,8 @@ impl From<RandomWord> for GameCard {
 
         }
     }
+
 }
+// #[test]
+// fn from_test()
 
