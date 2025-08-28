@@ -1,2 +1,3 @@
 pub mod game;
-pub mod input_grid;
+
+//another files for custom components?

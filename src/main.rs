@@ -8,7 +8,7 @@ use crate::ui::game::{Game, Message};
 
 mod ui;
 mod game_card;
-
+mod tests;
 
 const WIN_DEFAULT_SIZE:Size<f32> = Size::new(600.0, 600.0);
 

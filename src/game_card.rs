@@ -68,6 +68,7 @@ impl GameCard {
         chars.shuffle(&mut rand::rng());
         chars.iter().collect::<String>()
     }
+   
 }
 
 
