@@ -1,20 +1,12 @@
 
-use iced::{Alignment, Element, Font, Padding, Size, Theme};
-use iced::advanced::graphics::text::cosmic_text::Align;
-use iced::border::width;
-use iced::font::Style;
-use iced::widget::{Column, column, Button, Text, TextInput, Container, container};
-use iced::widget::pane_grid::Axis::Horizontal;
-use iced::window::{Icon, Level, Position, Settings};
-use iced::window::settings::PlatformSpecific;
+use iced::{Alignment, Element, Theme};
+use iced::widget::{column, Button, Text, TextInput, Container, container};
 use crate::game_card::GameCard;
 use crate::WIN_DEFAULT_SIZE;
 
 const SHUFFLED_TEXT_FONT_SIZE: u16 = 40;
-const PART_OF_SPEECH_FONT_SIZE: u16 = 10;
 
 const APPLICATION_TITLE_LOWERCASE: &str = "word game";
-const APPLICATION_TITLE_UPPERCASE: &str = "Word game";
 
 
 

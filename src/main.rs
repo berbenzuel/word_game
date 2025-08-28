@@ -1,10 +1,7 @@
-use iced::{application, Application, Size, Theme};
+use iced::{application, Size};
 use iced::window::{Level, Position, Settings};
 use iced::window::settings::PlatformSpecific;
-use serde::__private::de::Content::String;
-use serde::de::Unexpected::Str;
-use crate::game_card::GameCard;
-use crate::ui::game::{Game, Message};
+use crate::ui::game::Game;
 
 mod ui;
 mod game_card;

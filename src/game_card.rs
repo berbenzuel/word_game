@@ -1,9 +1,5 @@
-use std::error::Error;
 use std::fmt::Display;
-use iced::Task;
-use serde::de::Unexpected::Str;
 use serde::Deserialize;
-use log::error;
 
 //"suggestion": "a, adv, conj, interj, n, p, prep, pron, v"
 #[doc = "The part of speech of a word."]
