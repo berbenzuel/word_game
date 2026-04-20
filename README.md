@@ -1,7 +1,6 @@
 # Word game
 ![Static Badge](https://img.shields.io/badge/Rust-000?style=for-the-badge&logo=rust)
 ![Crates.io MSRV](https://img.shields.io/crates/msrv/iced?style=for-the-badge&logo=iced&label=iced&link=https%3A%2F%2Fdocs.iced.rs%2Ficed%2Findex.html)
-***
 
 ## About
 This a simple, based on guessing <b>word game</b>.  
@@ -10,7 +9,6 @@ If you guess the word right, next one will be given, but if you truly cannot, yo
 
 Enjoy!
 
----
 
 ## Usage
 >In debug it is not fetching words! Only word foobarbaz is given.  
