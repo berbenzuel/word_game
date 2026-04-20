@@ -48,13 +48,15 @@ impl GameCard {
         }
     }
     pub fn fetch_random() -> Result<GameCard, Box<dyn std::error::Error>> {
-        if cfg!(debug_assertions) {
-            return Ok(GameCard::new("FOOBARBAZ".to_string(), "this is simple test word (foobarbaz)".to_string(), PartOfSpeech::Noun));
+        let arg = std::env::args().nth(1);
+        if !cfg!(debug_assertions) || Some("fetch") == arg.as_deref() {
+            let response = reqwest::blocking::get("https://api.msmc.cc/api/dictionary/random")?;
+            let deserialized: RandomWord = response.json()?;
+            return Ok(GameCard::from(deserialized))
         }
+        Ok(GameCard::new("FOOBARBAZ".to_string(), "this is simple test word (foobarbaz)".to_string(), PartOfSpeech::Noun))
 
-        let response = reqwest::blocking::get("https://api.msmc.cc/api/dictionary/random")?;
-        let deserialized: RandomWord = response.json()?;
-        Ok(GameCard::from(deserialized))
+
     }
 
     pub fn shuffle_word(word: &String) -> String {
