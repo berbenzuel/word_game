@@ -49,7 +49,7 @@ impl GameCard {
     }
     pub fn fetch_random() -> Result<GameCard, Box<dyn std::error::Error>> {
         if cfg!(debug_assertions) {
-            return Ok(GameCard::new("TEST".to_string(), "this is simple test word".to_string(), PartOfSpeech::Noun));
+            return Ok(GameCard::new("FOOBARBAZ".to_string(), "this is simple test word (foobarbaz)".to_string(), PartOfSpeech::Noun));
         }
 
         let response = reqwest::blocking::get("https://api.msmc.cc/api/dictionary/random")?;
